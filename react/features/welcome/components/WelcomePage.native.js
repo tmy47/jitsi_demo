@@ -95,7 +95,30 @@ class WelcomePage extends AbstractWelcomePage {
         const { t } = this.props;
 
         return (
-            <View style={{marginTop: 22}}>
+
+
+
+            <View style={{
+                    marginTop:22, 
+                    backgroundColor:'#000000',
+                    flex: 1,
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                }}>
+                <TouchableHighlight style={{
+                    alignItems: 'center',
+                    backgroundColor:'#ffffff',
+                    width: 150, 
+                    height: 50,
+                    padding: 10,
+                    borderRadius: 5
+                }}
+                    onPress={() => {
+                        this.setModalVisible(true);
+                    }}>
+                    <Text style={{justifyContent: 'center', marginTop:4}}>Show Modal</Text>
+                </TouchableHighlight>
                 <Modal
                     animationType="slide"
                     transparent={false}
@@ -143,13 +166,6 @@ class WelcomePage extends AbstractWelcomePage {
                         </View>
                     </LocalVideoTrackUnderlay>
                 </Modal>
-
-                <TouchableHighlight style={{backgroundColor:'#bada55'}}
-                    onPress={() => {
-                        this.setModalVisible(true);
-                    }}>
-                    <Text>Show Modal</Text>
-                </TouchableHighlight>
             </View>
         );
     }
