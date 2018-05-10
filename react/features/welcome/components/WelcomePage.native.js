@@ -88,12 +88,12 @@ class WelcomePage extends AbstractWelcomePage {
             <LocalVideoTrackUnderlay style = { styles.welcomePage }>
                 <View style = { pageStyle }>
                     <Header style = { styles.header }>
-                        <TouchableOpacity onPress = { this._onShowSideBar } >
+                        {/* <TouchableOpacity onPress = { this._onShowSideBar } >
                             <Icon
                                 name = 'menu'
                                 style = { buttonStyle } />
-                        </TouchableOpacity>
-                        <VideoSwitch />
+                        </TouchableOpacity> */}
+                        {/* <VideoSwitch /> */}
                     </Header>
                     <SafeAreaView style = { styles.roomContainer } >
                         <View style = { styles.joinControls } >
