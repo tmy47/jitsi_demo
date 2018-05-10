@@ -174,6 +174,9 @@ public class MainActivity extends JitsiMeetActivity {
 
         // The welcome page defaults to disabled in the SDK at the time of this
         // writing but it is clearer to be explicit about what we want anyway.
+
+        setTheme(R.style.AppTheme);
+
         setWelcomePageEnabled(true);
 
         super.onCreate(savedInstanceState);
