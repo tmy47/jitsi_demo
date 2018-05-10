@@ -28,7 +28,7 @@ import LocalVideoTrackUnderlay from './LocalVideoTrackUnderlay';
 import styles, { PLACEHOLDER_TEXT_COLOR } from './styles';
 import VideoSwitch from './VideoSwitch';
 import WelcomePageLists from './WelcomePageLists';
-import WelcomePageSideBar from './WelcomePageSideBar';
+
 
 
 
@@ -141,7 +141,6 @@ class WelcomePage extends AbstractWelcomePage {
                             <WelcomePageLists disabled = { this.state._fieldFocused } />
                             <SettingsView />
                         </View>
-                        <WelcomePageSideBar />
                     </LocalVideoTrackUnderlay>
                 </Modal>
 
