@@ -6,7 +6,8 @@ import {
     TextInput,
     TouchableHighlight,
     TouchableOpacity,
-    View
+    View,
+    Modal
 } from 'react-native';
 import { connect } from 'react-redux';
 
@@ -29,12 +30,16 @@ import VideoSwitch from './VideoSwitch';
 import WelcomePageLists from './WelcomePageLists';
 import WelcomePageSideBar from './WelcomePageSideBar';
 
+
+
 /**
  * The native container rendering the welcome page.
  *
  * @extends AbstractWelcomePage
  */
 class WelcomePage extends AbstractWelcomePage {
+
+
     /**
      * Constructor of the Component.
      *
@@ -45,12 +50,17 @@ class WelcomePage extends AbstractWelcomePage {
 
         this.state._fieldFocused = false;
         this.state.hintBoxAnimation = new Animated.Value(0);
+        this.state.modalVisible = false;
 
         // Bind event handlers so they are only bound once per instance.
         this._getHintBoxStyle = this._getHintBoxStyle.bind(this);
         this._onFieldFocusChange = this._onFieldFocusChange.bind(this);
         this._onShowSideBar = this._onShowSideBar.bind(this);
         this._renderHintBox = this._renderHintBox.bind(this);
+    }
+
+    setModalVisible(visible) {
+        this.setState({modalVisible: visible});
     }
 
     /**
@@ -85,46 +95,63 @@ class WelcomePage extends AbstractWelcomePage {
         const { t } = this.props;
 
         return (
-            <LocalVideoTrackUnderlay style = { styles.welcomePage }>
-                <View style = { pageStyle }>
-                    <Header style = { styles.header }>
-                        {/* <TouchableOpacity onPress = { this._onShowSideBar } >
-                            <Icon
-                                name = 'menu'
-                                style = { buttonStyle } />
-                        </TouchableOpacity> */}
-                        {/* <VideoSwitch /> */}
-                    </Header>
-                    <SafeAreaView style = { styles.roomContainer } >
-                        <View style = { styles.joinControls } >
-                            <TextInput
-                                accessibilityLabel = { 'Input room name.' }
-                                autoCapitalize = 'none'
-                                autoComplete = { false }
-                                autoCorrect = { false }
-                                autoFocus = { false }
-                                onBlur = { this._onFieldFocusChange(false) }
-                                onChangeText = { this._onRoomChange }
-                                onFocus = { this._onFieldFocusChange(true) }
-                                onSubmitEditing = { this._onJoin }
-                                placeholder = { t('welcomepage.roomname') }
-                                placeholderTextColor = {
-                                    PLACEHOLDER_TEXT_COLOR
-                                }
-                                returnKeyType = { 'go' }
-                                style = { styles.textInput }
-                                underlineColorAndroid = 'transparent'
-                                value = { this.state.room } />
-                            {
-                                this._renderHintBox()
-                            }
+            <View style={{marginTop: 22}}>
+                <Modal
+                    animationType="slide"
+                    transparent={false}
+                    visible={this.state.modalVisible}
+                    onRequestClose={() => {
+                        alert('Modal has been closed.');
+                    }}>
+                    <LocalVideoTrackUnderlay style = { styles.welcomePage }>
+                        <View style = { pageStyle }>
+                            <Header style = { styles.header }>
+                                <TouchableOpacity 
+                                    onPress={() => {
+                                        this.setModalVisible(false);
+                                    }}>
+                                    <Text>Hide Modal</Text>
+                                </TouchableOpacity>
+                            </Header>
+                            <SafeAreaView style = { styles.roomContainer } >
+                                <View style = { styles.joinControls } >
+                                    <TextInput
+                                        accessibilityLabel = { 'Input room name.' }
+                                        autoCapitalize = 'none'
+                                        autoComplete = { false }
+                                        autoCorrect = { false }
+                                        autoFocus = { false }
+                                        onBlur = { this._onFieldFocusChange(false) }
+                                        onChangeText = { this._onRoomChange }
+                                        onFocus = { this._onFieldFocusChange(true) }
+                                        onSubmitEditing = { this._onJoin }
+                                        placeholder = { t('welcomepage.roomname') }
+                                        placeholderTextColor = {
+                                            PLACEHOLDER_TEXT_COLOR
+                                        }
+                                        returnKeyType = { 'go' }
+                                        style = { styles.textInput }
+                                        underlineColorAndroid = 'transparent'
+                                        value = { this.state.room } />
+                                    {
+                                        this._renderHintBox()
+                                    }
+                                </View>
+                            </SafeAreaView>
+                            <WelcomePageLists disabled = { this.state._fieldFocused } />
+                            <SettingsView />
                         </View>
-                    </SafeAreaView>
-                    <WelcomePageLists disabled = { this.state._fieldFocused } />
-                    <SettingsView />
-                </View>
-                <WelcomePageSideBar />
-            </LocalVideoTrackUnderlay>
+                        <WelcomePageSideBar />
+                    </LocalVideoTrackUnderlay>
+                </Modal>
+
+                <TouchableHighlight style={{backgroundColor:'#bada55'}}
+                    onPress={() => {
+                        this.setModalVisible(true);
+                    }}>
+                    <Text>Show Modal</Text>
+                </TouchableHighlight>
+            </View>
         );
     }
 
