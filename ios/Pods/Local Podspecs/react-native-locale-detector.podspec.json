@@ -1,0 +1,30 @@
+{
+  "name": "react-native-locale-detector",
+  "version": "1.0.0",
+  "summary": "Detects the locale of a user's phone.",
+  "homepage": "https://github.com/DylanVann/react-native-locale-detector",
+  "license": "MIT",
+  "authors": {
+    "name": "Dylan Vann",
+    "email": "dylan.vann@gmail.com",
+    "url": "dylanvann.com"
+  },
+  "source": {
+    "git": "https://github.com/DylanVann/react-native-locale-detector"
+  },
+  "requires_arc": true,
+  "platforms": {
+    "ios": "9.0"
+  },
+  "preserve_paths": [
+    "README.md",
+    "package.json",
+    "index.js"
+  ],
+  "source_files": "RNI18n/*.{h,m}",
+  "dependencies": {
+    "React": [
+
+    ]
+  }
+}

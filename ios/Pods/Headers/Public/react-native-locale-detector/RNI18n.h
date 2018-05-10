@@ -1,0 +1,1 @@
+../../../../../node_modules/react-native-locale-detector/RNI18n/RNI18n.h
